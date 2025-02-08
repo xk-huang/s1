@@ -202,7 +202,7 @@ cd s1
 pip3 install -r requirements.txt
 bash train/sft.sh
 ```
-
+*Note: If you encounter an out-of-memory (OOM) issue with 8 GPUs, consider enabling gradient checkpointing by adding the following line to your script: `--gradient_checkpointing=True `.*
 ### Evaluation
 
 We cloned [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) at commit `4cec66e4e468d15789473d6d63c3a61a751fa524` and modified it. Setup:
