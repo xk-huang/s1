@@ -23,7 +23,7 @@ torchrun --nproc-per-node ${gpu_count} --master_port 12345 \
     --warmup_ratio=0.05 \
     --report_to="none" \
     --fsdp="full_shard auto_wrap" \
-    --fsdp_config="train/fsdp_config_qwen_cpu.json" \
+    --fsdp_config="train/fsdp_config_qwen.json" \
     --bf16=True \
     --eval_strategy="no" \
     --logging_steps=1 \
@@ -33,7 +33,7 @@ torchrun --nproc-per-node ${gpu_count} --master_port 12345 \
     --weight_decay=${weight_decay} \
     --adam_beta1=0.9 \
     --adam_beta2=0.95 \
-    --output_dir="ckpts/${run_name}" \
+    --output_dir="ckpts/s1-${uid}" \
     --push_to_hub=false \
     --save_only_model=True \
     --gradient_checkpointing=True \
