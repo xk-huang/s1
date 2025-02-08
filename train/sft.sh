@@ -22,7 +22,6 @@ torchrun --nproc-per-node ${gpu_count} --master_port 12345 \
     --train_file_path="simplescaling/s1K_tokenized" \
     --model_name=${base_model} \
     --warmup_ratio=0.05 \
-    --report_to="none" \
     --fsdp="full_shard auto_wrap" \
     --fsdp_config="train/fsdp_config_qwen.json" \
     --bf16=True \
