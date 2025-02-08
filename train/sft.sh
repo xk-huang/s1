@@ -20,7 +20,7 @@ torchrun --nproc-per-node ${gpu_count} --master_port 12345 \
     --gradient_accumulation_steps=${gradient_accumulation_steps} \
     --num_train_epochs=${epochs} \
     --train_file_path="simplescaling/s1K_tokenized" \
-    --model_name="Qwen/Qwen2.5-32B-Instruct" \
+    --model_name=${base_model} \
     --warmup_ratio=0.05 \
     --report_to="none" \
     --fsdp="full_shard auto_wrap" \
