@@ -12,10 +12,14 @@ This repository provides an overview of all resources for the paper ["s1: Simple
 - [Artifacts](#artifacts)
 - [Structure](#structure)
 - [Inference](#inference)
-- [Training](#pretraining)
+  - [vLLM](#vllm)
+  - [vLLM with budget forcing](#vllm-with-budget-forcing)
+  - [transformers](#transformers)
+- [Training](#training)
 - [Evaluation](#evaluation)
 - [Data](#data)
 - [Visuals](#visuals)
+- [Known Issues](#known-issues)
 - [Citation](#citation)
 
 ### Artifacts
@@ -190,6 +194,14 @@ response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
 ### Training
 
 To run training, you can find our script at `train/sft.py` which you can invoke via one of the `train/sft*sh` scripts which in turn you can launch via `train/launch.sh` if you are on a SLURM cluster (requires editing the file for your cluster setup).
+
+We provide a quick start to reproduce the results
+```
+git clone https://github.com/simplescaling/s1.git
+cd s1
+pip3 install -r requirements.txt
+bash train/sft.sh
+```
 
 ### Evaluation
 
