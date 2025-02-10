@@ -47,7 +47,7 @@ from vllm import LLM, SamplingParams
 from transformers import AutoTokenizer
 
 model = LLM(
-    "simplescaling/s1-32B",
+    "simplescaling/s1.1-32B",
     tensor_parallel_size=2,
 )
 tok = AutoTokenizer.from_pretrained("simplescaling/s1-32B")
@@ -79,7 +79,7 @@ MAX_TOKENS_THINKING = 32000
 NUM_IGNORE = 1
 
 model = LLM(
-    "simplescaling/s1-32B",
+    "simplescaling/s1-32B", # s1 originally gets this prompt wrong but with budget forcing it fixes it
     tensor_parallel_size=2,
 )
 tok = AutoTokenizer.from_pretrained(
@@ -95,9 +95,7 @@ sampling_params = SamplingParams(
     temperature=0.0,
 )
 
-# For the exact raspberry sample in the paper, change
-# model to `qfq/1k_qr_bt_dm_po_steps` (an earlier version of s1)
-# & prompt to `How many r in raspberry?`
+# For the exact raspberry sample in the paper see
 prompts = [
     "How many r in raspberry",
 ]
@@ -148,7 +146,7 @@ for i, p in enumerate(prompts):
         prompt,
         sampling_params=sampling_params,
     )
-    print("With budget forcing:")
+    print("With budget forcing:") # You will see that after the "Wait" in the reasoning trace it fixes its answer
     print(prompt + o[0].outputs[0].text)
 ```
 
@@ -161,7 +159,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-model_name = "simplescaling/s1-32B"
+model_name = "simplescaling/s1.1-32B"
 
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
