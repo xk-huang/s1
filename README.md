@@ -133,7 +133,7 @@ for i, p in enumerate(prompts):
             sampling_params=sampling_params
         )
     ### Final answer ###
-    prompt += o[0].outputs[0].text
+    prompt += o[0].outputs[0].text # You can also append "Final Answer:" here like we do for some evaluations to prevent the model from just continuing to reason in its answer when early exiting
     stop_token_ids = tok("<|im_end|>")["input_ids"]
     sampling_params = SamplingParams(
         max_tokens=32768,
