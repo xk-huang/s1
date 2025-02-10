@@ -223,9 +223,12 @@ Note that for the evaluations in the Discussion section with REBASE we used http
 
 ### Data
 
-To recreate our data:
+To recreate our data follow the steps below. In various files you will have to rename the organizations `simplescaling` and `qfq` with an organization that you own.
 1. Run `data/collect_data.py` followed by `data/fix_gpqa.py` & `data/add_aime.py` to collect the questions; Make sure to change the hub path in the respective files to one of your own
-2. ... @Zitong ...
+3. Generate traces with Gemini via `python data/gemini.py`.
+4. Generate answers with Qwen via `python data/bulk_inference.py` that can be launched with `data/bulk_inference.sh`.
+5. Add features by running `python data/featurization.py`.
+6. Run final filtering via going through `data/filter.ipynb`.
 
 ### Visuals
 
