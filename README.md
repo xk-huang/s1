@@ -44,6 +44,8 @@ This repository provides an overview of all resources for the paper ["s1: Simple
 Install the `vllm` library and run:
 ```python
 from vllm import LLM, SamplingParams
+from transformers import AutoTokenizer
+
 model = LLM(
     "simplescaling/s1-32B",
     tensor_parallel_size=2,
