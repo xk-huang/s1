@@ -450,7 +450,7 @@ if __name__ == "__main__":
     for ds_name, (load_fn, selection_fn, n_samples) in DS_TO_SELECTION.items():
         print(f"Processing {ds_name}...")
         ds = load_fn()
-        # ds = decontaminate_train_data(ds['question'], test_questions, ds, ngram_size=8)
+        ds = decontaminate_train_data(ds['question'], test_questions, ds, ngram_size=8)
         if selection_fn:
             # Outdated, needs to be updated
             if ds_name == "Omni-MATH":
