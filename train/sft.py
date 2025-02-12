@@ -18,9 +18,10 @@ class TrainingConfig:
     train_file_path: Optional[str] = field(default='simplescaling/s1K_tokenized')
     dagger: bool = field(default=False)
 
-    def __post_init__(self):
-        os.environ['WANDB_PROJECT'] = self.wandb_project
-        os.environ['WANDB_ENTITY'] = self.wandb_entity
+    # NOTE xk: do not overwrite WANDB environment variables
+    # def __post_init__(self):
+    #     os.environ['WANDB_PROJECT'] = self.wandb_project
+    #     os.environ['WANDB_ENTITY'] = self.wandb_entity
 
 def train():
     # parsing input
@@ -38,7 +39,10 @@ def train():
                   "attn_implementation": "flash_attention_2", "use_cache": False}
         model = transformers.AutoModelForCausalLM.from_pretrained(config.model_name, **kwargs)
     else:
-        model = transformers.AutoModelForCausalLM.from_pretrained(config.model_name)
+        # NOTE xk: use flash-attn by default
+        kwargs = {"torch_dtype": "auto",
+                  "attn_implementation": "flash_attention_2", "use_cache": False}
+        model = transformers.AutoModelForCausalLM.from_pretrained(config.model_name, **kwargs)
 
     dataset = load_dataset(config.train_file_path)
 
