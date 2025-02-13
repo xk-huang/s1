@@ -126,21 +126,21 @@ for i, p in enumerate(prompts):
     )
     ignore_str = "Wait"
     max_tokens_thinking_tmp = MAX_TOKENS_THINKING
-    # Num of times to skip stop token
-    for i in range(NUM_IGNORE):
-        max_tokens_thinking_tmp -= len(o[0].outputs[0].token_ids)
-        prompt += o[0].outputs[0].text + ignore_str
-        sampling_params = SamplingParams(
-            max_tokens=max_tokens_thinking_tmp,
-            min_tokens=1,
-            stop_token_ids=stop_token_ids,
-            skip_special_tokens=False,
-            temperature=0.0,
-        )
-        o = model.generate(
-            prompt,
-            sampling_params=sampling_params
-        )
+    if max_tokens_thinking_tmp > 0:
+        for i in range(NUM_IGNORE): # Num of times to skip stop token
+            max_tokens_thinking_tmp -= len(o[0].outputs[0].token_ids)
+            prompt += o[0].outputs[0].text + ignore_str
+            sampling_params = SamplingParams(
+                max_tokens=max_tokens_thinking_tmp,
+                min_tokens=1,
+                stop_token_ids=stop_token_ids,
+                skip_special_tokens=False,
+                temperature=0.0,
+            )
+            o = model.generate(
+                prompt,
+                sampling_params=sampling_params
+            )
     ### Final answer ###
     prompt += o[0].outputs[0].text # You can also append "Final Answer:" here like we do for some evaluations to prevent the model from just continuing to reason in its answer when early exiting
     stop_token_ids = tok("<|im_end|>")["input_ids"]
