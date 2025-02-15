@@ -20,6 +20,7 @@ To use them without `dotenv`:
 set -a
 . .env
 set +a
+echo $HF_HOME
 ```
 
 ## Run SFT

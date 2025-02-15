@@ -1,5 +1,28 @@
 # Env
 
+## Prerequisite
+
+Use a `.env` file
+
+```bash
+WANDB_API_KEY=?
+WANDB_PROJECT=s1
+WANDB_MODE=online  # online, offline, disabled; ref: https://docs.wandb.ai/ref/python/init/
+WANDB_ENTITY=xk-huang
+
+HF_TOKEN=? # read-only
+HF_HOME=cache/
+```
+
+To use them without `dotenv`:
+
+```bash
+set -a
+. .env
+set +a
+echo $HF_HOME
+```
+
 ## Conda
 
 Install mini conda
@@ -46,14 +69,4 @@ export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 pip install packaging ninja
 pip uninstall -y ninja && pip install ninja
 pip install flash-attn --no-build-isolation
-```
-
-## Eval
-
-```bash
-mkdir -p third_party/
-git clone --depth 1 git@github.com:EleutherAI/lm-evaluation-harness.git third_party/lm-evaluation-harness
-cd third_party/lm-evaluation-harness/
-git fetch --depth 1 origin 4cec66e4e468d15789473d6d63c3a61a751fa524
-git checkout 4cec66e4e468d15789473d6d63c3a61a751fa524
 ```

@@ -6,6 +6,8 @@ cache/
 
 .vscode/
 
-third_party/
-
 .env
+
+outputs/
+
+misc/
