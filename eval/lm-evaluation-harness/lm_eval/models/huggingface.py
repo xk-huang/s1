@@ -39,7 +39,7 @@ from lm_eval.models.utils import (
 if int(os.getenv("O1INFERENCE", 0)):
     import sys
     sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
-    from tot.o1 import o1
+    from tot.o1_reabse_text import o1
 
 eval_logger = utils.eval_logger
 
