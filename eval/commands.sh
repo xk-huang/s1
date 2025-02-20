@@ -1,3 +1,5 @@
+### Note that for all of these evaluations you should be in the `eval/lm-evaluation-harness` directory and have the dependencies there installed.
+
 ### Testing ###
 
 # Testing
