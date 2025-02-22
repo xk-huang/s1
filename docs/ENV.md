@@ -14,6 +14,8 @@ HF_TOKEN=? # read-only
 HF_HOME=cache/
 ```
 
+Note that call `dotenv.load_dotenv` before import `transformers`.
+
 To use them without `dotenv`:
 
 ```bash
