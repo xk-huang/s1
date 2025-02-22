@@ -11,3 +11,5 @@ cache/
 outputs/
 
 misc/
+
+*.pyc
